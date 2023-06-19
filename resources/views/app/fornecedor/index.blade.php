@@ -1,10 +1,8 @@
 <h3>Fornecedor</h3>
 
-{{-- Faz um loop em um array, caso o array estiver vazio exibe algo com o @empty --}}
-
 @isset($fornecedores)
     @forelse ($fornecedores as $fornecedor)
-        Fornecedor: {{ $fornecedor['nome'] ?? 'Dado nao foi preenchido' }}
+        Fornecedor: @{{ $fornecedor['nome'] ?? 'Dado nao foi preenchido' }}
         <br>
         Status: {{ $fornecedor['status'] ?? 'Dado nao foi preenchido' }}
         <br>
