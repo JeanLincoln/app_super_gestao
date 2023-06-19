@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PrincipalController@principal')->name('site.index');
-Route::get('/sobrenos', 'SobrenosController@principal')->name('site.sobrenos');
-Route::get('/contato', 'ContatoController@principal')->name('site.contato');
+Route::get('/sobrenos', 'SobrenosController@sobrenos')->name('site.sobrenos');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::get('/login', function () {
     return 'login';
 })->name('site.login');
