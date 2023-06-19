@@ -19,6 +19,8 @@ Route::get('/sobrenos', 'SobrenosController@principal');
 
 Route::get('/contato', 'ContatoController@principal');
 
-Route::get('/contato/{nome}/{idade}', function (string $nome, int $idade) {
+// os parametros devem ser passados da direita na rota, para esquerda para não haver erros!
+Route::get('/contato/{nome}/{idade?}', function (string $nome, int $idade = 0) {
+
     echo "Estamos aqui: $nome você tem a idade de: $idade anos";
 });
