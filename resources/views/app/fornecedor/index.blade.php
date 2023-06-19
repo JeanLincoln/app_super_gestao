@@ -14,7 +14,9 @@
 
     com as situacoes acima o @empty retornara true
 --}}
-@for ($i = 0; $i < count($fornecedores); $i++)
+
+@php $i = 0 @endphp
+@while (isset($fornecedores[$i]))
     @isset($fornecedores)
         Fornecedor: {{ $fornecedores[$i]['nome'] ?? 'Dado nao foi preenchido' }}
         <br>
@@ -27,4 +29,5 @@
         <br>
         <hr>
     @endisset
-@endfor
+    @php $i++ @endphp
+@endwhile
