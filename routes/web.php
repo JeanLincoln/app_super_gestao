@@ -19,8 +19,10 @@ Route::get('/sobrenos', 'SobrenosController@principal');
 
 Route::get('/contato', 'ContatoController@principal');
 
-// os parametros devem ser passados da direita na rota, para esquerda para não haver erros!
-Route::get('/contato/{nome}/{idade?}', function (string $nome, int $idade = 0) {
-
-    echo "Estamos aqui: $nome você tem a idade de: $idade anos";
-});
+Route::get(
+    '/contato/{nome}/{categoria_id?}',
+    function (string $nome = 'Desconhecido', int $categoria_id = 1) {
+        echo 'Estamos aqui:' . $nome . ' - ' . $categoria_id;
+    }
+    // o primeiro parametro e a variavel e o segundo a expressao regular
+)->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');
