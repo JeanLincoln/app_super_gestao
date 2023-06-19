@@ -15,19 +15,18 @@
     com as situacoes acima o @empty retornara true
 --}}
 
-@php $i = 0 @endphp
-@while (isset($fornecedores[$i]))
+
+@foreach ($fornecedores as $fornecedor)
     @isset($fornecedores)
-        Fornecedor: {{ $fornecedores[$i]['nome'] ?? 'Dado nao foi preenchido' }}
+        Fornecedor: {{ $fornecedor['nome'] ?? 'Dado nao foi preenchido' }}
         <br>
-        Status: {{ $fornecedores[$i]['status'] ?? 'Dado nao foi preenchido' }}
+        Status: {{ $fornecedor['status'] ?? 'Dado nao foi preenchido' }}
         <br>
-        CPNJ : {{ $fornecedores[$i]['cnpj'] ?? 'Dado nao foi preenchido' }}
+        CPNJ : {{ $fornecedor['cnpj'] ?? 'Dado nao foi preenchido' }}
         <br>
-        Telefone : ({{ $fornecedores[$i]['ddd'] ?? 'Dado nao foi preenchido' }}
-        {{ $fornecedores[$i]['telefone'] ?? 'Dado nao foi preenchido' }})
+        Telefone : ({{ $fornecedor['ddd'] ?? 'Dado nao foi preenchido' }}
+        {{ $fornecedor['telefone'] ?? 'Dado nao foi preenchido' }})
         <br>
         <hr>
     @endisset
-    @php $i++ @endphp
-@endwhile
+@endforeach
