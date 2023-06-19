@@ -12,7 +12,7 @@ class FornecedorController extends Controller
             0 => [
                 'nome' => 'Fornecedor 1',
                 'status' => 'N',
-                'cnpj' => '00.000.000/000-00'
+                'cnpj' => ''
             ],
             1 => [
                 'nome' => 'Fornecedor 2',
@@ -21,6 +21,5 @@ class FornecedorController extends Controller
             ]
         ];
         return view('app.fornecedor.index', compact('fornecedores'));
-        // return view('app.fornecedor.index');
     }
 }
