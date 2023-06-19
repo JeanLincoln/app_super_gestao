@@ -18,3 +18,12 @@ Route::get('/', 'PrincipalController@principal');
 Route::get('/sobrenos', 'SobrenosController@principal');
 
 Route::get('/contato', 'ContatoController@principal');
+
+Route::get('/login', function () {
+    return 'login'; });
+Route::get('/clientes', function () {
+    return 'clientes'; });
+Route::get('/fornecedores', function () {
+    return 'fornecedores'; });
+Route::get('/produtos', function () {
+    return 'produtos'; });
