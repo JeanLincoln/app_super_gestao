@@ -1,10 +1,7 @@
 <h3>Fornecedor</h3>
 
-{{-- Variavel disponivel apenas no foreach e forelse --}}
-
 @isset($fornecedores)
     @forelse ($fornecedores as $fornecedor)
-        {{-- {{ dd($loop) }} --}}
         Iteracao atual: {{ $loop->iteration }}
         <br>
         Fornecedor: {{ $fornecedor['nome'] ?? 'Dado nao foi preenchido' }}
