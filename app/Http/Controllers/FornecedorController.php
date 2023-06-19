@@ -24,7 +24,7 @@ class FornecedorController extends Controller
                 'telefone' => '0000-0000'
             ],
             2 => [
-                'nome' => 'Fornecedor 2',
+                'nome' => 'Fornecedor 3',
                 'status' => 'S',
                 'cnpj' => '00.000.000/000-00',
                 'ddd' => '32',

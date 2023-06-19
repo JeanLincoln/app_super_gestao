@@ -14,30 +14,17 @@
 
     com as situacoes acima o @empty retornara true
 --}}
-
-@isset($fornecedores)
-    Fornecedor: {{ $fornecedores[0]['nome'] ?? 'Dado nao foi preenchido' }}
-    <br>
-    Status: {{ $fornecedores[0]['status'] ?? 'Dado nao foi preenchido' }}
-    <br>
-    CPNJ : {{ $fornecedores[0]['cnpj'] ?? 'Dado nao foi preenchido' }}
-    <br>
-    Telefone : ({{ $fornecedores[0]['ddd'] ?? 'Dado nao foi preenchido' }}
-    {{ $fornecedores[0]['telefone'] ?? 'Dado nao foi preenchido' }}) -
-    @switch($fornecedores[0]['ddd'])
-        @case('11')
-            Sao paulo - SP
-        @break
-
-        @case('32')
-            Juiz de fora - MG
-        @break
-
-        @case('85')
-            Fortaleza - CE
-        @break
-
-        @default
-            Estado nao identificado
-    @endswitch
-@endisset
+@for ($i = 0; $i < count($fornecedores); $i++)
+    @isset($fornecedores)
+        Fornecedor: {{ $fornecedores[$i]['nome'] ?? 'Dado nao foi preenchido' }}
+        <br>
+        Status: {{ $fornecedores[$i]['status'] ?? 'Dado nao foi preenchido' }}
+        <br>
+        CPNJ : {{ $fornecedores[$i]['cnpj'] ?? 'Dado nao foi preenchido' }}
+        <br>
+        Telefone : ({{ $fornecedores[$i]['ddd'] ?? 'Dado nao foi preenchido' }}
+        {{ $fornecedores[$i]['telefone'] ?? 'Dado nao foi preenchido' }})
+        <br>
+        <hr>
+    @endisset
+@endfor
