@@ -1,18 +1,14 @@
 <h3>Fornecedor</h3>
 
-{{-- enquanto o if executa se o retorno for true, o unless executa se for false --}}
+{{-- Verifica se uma variavel esta ou nao definida, se estiver ela executa um bloco de codigo ou retorna true --}}
 
-Fornecedor: {{ $fornecedores[0]['nome'] }}
-<br>
-Status: {{ $fornecedores[0]['status'] }}
-<br>
-
-@if (!($fornecedores[0]['status'] == 'S'))
-    Fornecedor inativo
-@endif
-
-<br>
-
-@unless ($fornecedores[0]['status'] == 'S')
-    Fornecedor inativo
-@endunless
+@isset($fornecedores)
+    Fornecedor: {{ $fornecedores[1]['nome'] }}
+    <br>
+    Status: {{ $fornecedores[1]['status'] }}
+    <br>
+    @isset($fornecedores[1]['cnpj'])
+        CNPJ: {{ $fornecedores[1]['cnpj'] }}
+    @endisset
+    <br>
+@endisset
