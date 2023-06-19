@@ -8,6 +8,6 @@ class ContatoController extends Controller
 {
     public function principal()
     {
-        echo 'Contato';
+        return view('site.contato');
     }
 }
