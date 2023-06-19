@@ -18,3 +18,7 @@ Route::get('/', 'PrincipalController@principal');
 Route::get('/sobrenos', 'SobrenosController@principal');
 
 Route::get('/contato', 'ContatoController@principal');
+
+Route::get('/contato/{nome}/{idade}', function (string $nome, int $idade) {
+    echo "Estamos aqui: $nome você tem a idade de: $idade anos";
+});
