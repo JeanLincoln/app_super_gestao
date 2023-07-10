@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 /*
-E possivel criar registros no banco de dados atraves do metodo estatico ::create, para isto,
-precisamos informar no model os campos permitidos para insercao pelo metodo ::create, para isto, utilizamos o $fillable conforme abaixo no model.
+O metodo estatico ::all() retorna uma colecao com todos os registros de uma tabela do banco de dados,
+como por exemplo o model abaixo, poderiamos utilizar
 
-O comando para criacao pelo create seria o seguir:
+$fornecedores = Fornecedor::all();
 
-\App\Fornecedor::create(['nome'=> 'Fornecedor ABC', 'site'=>'fornecedorabc.com.br','uf'=>'SP','email'=>'contato@fornecedorabc.com.br']);
+e ele nos retornaria uma colecao com todos os registros da tabela de fornecedores.
+Podemos tambem encadear o comando ->toArray(); para que inves de retornar uma colecao ele retorne um array.
 */
 
 class Fornecedor extends Model
