@@ -3,14 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 /*
-O metodo estatico ::all() retorna uma colecao com todos os registros de uma tabela do banco de dados,
-como por exemplo o model abaixo, poderiamos utilizar
+Podemos utilizar o metodo estatico ::find() para retornar registros especificos do banco de dados baseado na primary key, geralmente o id, como por exemplo
 
-$fornecedores = Fornecedor::all();
+$fornecedor = Fornecedor::find(1);
 
-e ele nos retornaria uma colecao com todos os registros da tabela de fornecedores.
-Podemos tambem encadear o comando ->toArray(); para que inves de retornar uma colecao ele retorne um array.
+Podemos utilizar um array de pesquisa no find:
+
+$fornecedor = Fornecedor::find([1,2,3,4,5]);
 */
 
 class Fornecedor extends Model
