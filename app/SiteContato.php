@@ -6,23 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-Métodos statico ::where()
+Métodos staticos ::whereIn() e ::whereNotIn()
 
-O método statico where é um construtor, ou seja ele não retorna uma collection e sim um builder.
-Para que possamos obter uma collection devemos encadea-lo a um ->get()
+::whereIn()
 
-O metodo where tem os mesmos operadores logicos que o sql, segue eles:
+retorna um builder na qual realiza a consulta na tabela informada no primeiro parametro,
+de acordo com o conjuto de parametros informado no 2 parametro do método.
 
-==      ::where('coluna', 'termo')->get();                      compara a coluna e igual ao termo
->       ::where()->get('coluna','>','termo');                   compara se coluna e maior que o termo
->=      ::where()->get('coluna','>=','termo');                  compara se coluna e maior ou igual que o termo
-<       ::where()->get('coluna','<','termo');                   compara se coluna e menor que o termo
-=<      ::where()->get('coluna','=<','termo');                  compara se coluna e menor ou igual que o termo
-<>      ::where()->get('coluna','<>','termo');                  compara se coluna e diferente que o termo
-like    ::where()->get('coluna','like','%termo');               verdadeiro se coluna e começa com o termo
-like    ::where()->get('coluna','like','termo%');               verdadeiro se coluna e termina com o termo
-like    ::where()->get('coluna','like','%termo%');              verdadeiro se coluna e em alguma parte dela contém o termo
-like    ::where()->get('coluna','like','termo1%termo2%termo3'); verdadeiro se coluna e começa com o termo1, contem o termo2, e termina com o termo3
+SiteContato::whereIn('campo_a_ser_comparado_por_igual','Conjunto de parametros')
+SiteContato::whereIn('motivo_contato','[1,3]')->get();
+
+Na query acima ele iria retornar os usuarios que tiveram o motivo de contato 1 e 3.
+
+o ::whereNotIn() é basicamente a mesma coisa, so que o contrario, ou seja a query acima seria o motivo de contato
+diferente de 1 e 3.
 
 */
 
