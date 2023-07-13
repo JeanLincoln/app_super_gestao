@@ -6,21 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-whereColumn()
+Podemos utilizar uma função de callback para que seja utilizados subgrupos de filtros, fazendo com que a consulta seja
+mais especifica.
 
-compara duas colunas de um registro e determina se o registro deve retornar ou não.
 
-Esse método desconsidera valores nulos, ou seja, se o registro dentro de uma coluna for nulo, ele não considera-lo.
+SiteContato::where(function($query) {})->where(function($query) {})->orWhere(function($query) {})
 
-SiteContato::whereColumn('coluna_a_ser_comparada','operador comparativo','coluna_a_ser_comparada')
+SiteContato::where(function($query) {
+    $query->where('nome','Jorge')
+        ->orWhere('nome','ana');
+})
+    ->where(function($query) {
+        $query->whereIn('motive_contato',[1,2])
+        ->orWhereBetween('id',[4,6]);
+    })
+    ->get();
 
-SiteContato::whereColumn('created_at', 'updated_at')
-SiteContato::whereColumn('created_at','>','updated_at')
-SiteContato::whereColumn('created_at','<','updated_at')
 
-SiteContato::orWhereColumn('created_at', 'updated_at')
-SiteContato::orWhereColumn('created_at','>','updated_at')
-SiteContato::orWhereColumn('created_at','<','updated_at')
+
 
 
 */
