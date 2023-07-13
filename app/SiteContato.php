@@ -6,16 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-Selecionando registros utilizando a porta logica or
+Selecionando registros nulos ou não nulos
 
-select * from tabela where condicao1 or condicao2 or condicao 3
+select * from tabela where condicao1 is null
+select * from tabela where condicao1 is not null
 
-SiteContato::where('campo_a_ser_comparado_por_igual','Conjunto de parametros')->orWhere('campo_a_ser_comparado_por_igual','Conjunto de parametros')
+SiteContato::whereNull('campo_a_ser_comparado_por_igual')
+SiteContato::whereNotNull('campo_a_ser_comparado_por_igual')
 
-SiteContato::where('nome','<>','[3,6]')
-    ->orWhereIn('motivo_contato','[1,2]')+
-    ->orWhereBetween('created_at','['2020-08-01 00:00:00','2020-08-31 : 23:59:59']')
-    ->get();
+SiteContato::whereNull('update_at')->get();
+
+SiteContato::whereNotNull('update_at')->get();
+
+utilizando a porta logica or
+
+SiteContato::orWhereNull('update_at')->get();
+
+SiteContato::orWhereNotNull('update_at')->get();
 
 */
 
