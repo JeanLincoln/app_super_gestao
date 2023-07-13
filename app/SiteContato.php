@@ -6,28 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-Selecionando registros com base em parâmetros do tipo data e hora
+whereColumn()
 
-select * from tabela where condicao1 is null
-select * from tabela where condicao1 is not null
+compara duas colunas de um registro e determina se o registro deve retornar ou não.
 
-SiteContato::whereDate('campo_a_ser_comparado_por_igual', 'data')
+Esse método desconsidera valores nulos, ou seja, se o registro dentro de uma coluna for nulo, ele não considera-lo.
 
-SiteContato::whereDate('created_at', '2020-02-02')->get();
+SiteContato::whereColumn('coluna_a_ser_comparada','operador comparativo','coluna_a_ser_comparada')
 
-SiteContato::whereDay('campo_a_ser_comparado_por_igual', 'dia do mes')
-SiteContato::whereMonth('campo_a_ser_comparado_por_igual', 'mes')
-SiteContato::whereYear('campo_a_ser_comparado_por_igual', 'ano')
+SiteContato::whereColumn('created_at', 'updated_at')
+SiteContato::whereColumn('created_at','>','updated_at')
+SiteContato::whereColumn('created_at','<','updated_at')
 
-SiteContato::whereDay('created_at', '2')
-    ->SiteContato::whereMonth('created_at', '10')
-    ->SiteContato::whereYear('created_at', '2023')
-    ->get()
+SiteContato::orWhereColumn('created_at', 'updated_at')
+SiteContato::orWhereColumn('created_at','>','updated_at')
+SiteContato::orWhereColumn('created_at','<','updated_at')
 
-SiteContato::whereTime('campo_a_ser_comparado_por_igual','Operado de comparação', 'tempo')
-
-SiteContato::whereTime('campo_a_ser_comparado_por_igual', '=', '10:22:33')
-SiteContato::whereTime('campo_a_ser_comparado_por_igual', '>', '10:22:33')
 
 */
 
