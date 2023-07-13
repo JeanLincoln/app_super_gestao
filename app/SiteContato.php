@@ -6,23 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-Selecionando registros nulos ou não nulos
+Selecionando registros com base em parâmetros do tipo data e hora
 
 select * from tabela where condicao1 is null
 select * from tabela where condicao1 is not null
 
-SiteContato::whereNull('campo_a_ser_comparado_por_igual')
-SiteContato::whereNotNull('campo_a_ser_comparado_por_igual')
+SiteContato::whereDate('campo_a_ser_comparado_por_igual', 'data')
 
-SiteContato::whereNull('update_at')->get();
+SiteContato::whereDate('created_at', '2020-02-02')->get();
 
-SiteContato::whereNotNull('update_at')->get();
+SiteContato::whereDay('campo_a_ser_comparado_por_igual', 'dia do mes')
+SiteContato::whereMonth('campo_a_ser_comparado_por_igual', 'mes')
+SiteContato::whereYear('campo_a_ser_comparado_por_igual', 'ano')
 
-utilizando a porta logica or
+SiteContato::whereDay('created_at', '2')
+    ->SiteContato::whereMonth('created_at', '10')
+    ->SiteContato::whereYear('created_at', '2023')
+    ->get()
 
-SiteContato::orWhereNull('update_at')->get();
+SiteContato::whereTime('campo_a_ser_comparado_por_igual','Operado de comparação', 'tempo')
 
-SiteContato::orWhereNotNull('update_at')->get();
+SiteContato::whereTime('campo_a_ser_comparado_por_igual', '=', '10:22:33')
+SiteContato::whereTime('campo_a_ser_comparado_por_igual', '>', '10:22:33')
 
 */
 
