@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-o método save() atualiza os dados no banco de dados.
+o método fill() atualiza os dados no banco de dados atrávez de um array associativo.
 
-$fornecedor = Fornecedor::find(1);
+$fornecedor2 = Fornecedor::find(2);
 
-$fornecedor->nome = 'Fornecedor 123'
-$fornecedor->site = 'fornecedor123.com.br'
-$fornecedor->email = 'fornecedor123@gmail.com'
+$fornecedores2->fill(['nome'=> 'Fornecedor789','site'=>'Fornecedor789.com.br','email'=>'Fornecedor789@gmail.com.br'])
 
-$contatos = SiteContato::all();
+$fornecedores2->save();
+
+Para que isto funcione precisamos que os dados no fill estejam  no fillable.
+
 
 */
 class Fornecedor extends Model
