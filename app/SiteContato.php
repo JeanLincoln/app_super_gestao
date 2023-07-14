@@ -6,20 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-Podemos ordernar a consulta utilizando o orderBy
+first, last e reverse, são métodos aplicados em collections, ou seja,
+quando descapsulamentos a query do builder com o get() ou all() por exemplo.
 
-    select *
-    from table
-    order by desc
+$contato = SiteContato::where('id','>',3)->get();
 
-Para conserguirmos reproduzir a query acima podemos fazer da seguinte forma
-
-SiteContato::orderBy('nome') método ascedente
-SiteContato::orderBy('nome', 'desc') método descedente
-
-encadeando ordenações:
-
-SiteContato::orderBy('motivo_contato')->orderBy('nome', 'desc')
+$contato->first(); retornara o primeiro objeto da coleção.
+$contato->last(); retornara o ultimo objeto da coleção.
+$contato->reverse(); reverte a ordem dos objetos.
 
 */
 
