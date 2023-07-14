@@ -6,16 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-o método fill() atualiza os dados no banco de dados atrávez de um array associativo.
+o método update() atualiza varios registros no banco de dados atráves de um array associativo e uma query.
 
-$fornecedor2 = Fornecedor::find(2);
+Fornecedor::whereIn('coluna',['range_de_condições'])->['coluna','valor'];
 
-$fornecedores2->fill(['nome'=> 'Fornecedor789','site'=>'Fornecedor789.com.br','email'=>'Fornecedor789@gmail.com.br'])
-
-$fornecedores2->save();
-
-Para que isto funcione precisamos que os dados no fill estejam  no fillable.
-
+Fornecedor::whereIn('id',[1,2])->update(['nome' =>'fornecedor teste', 'site' => 'teste.com.br']);
 
 */
 class Fornecedor extends Model
