@@ -6,14 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-first, last e reverse, são métodos aplicados em collections, ou seja,
-quando descapsulamentos a query do builder com o get() ou all() por exemplo.
+O método pluck permite recuperar todos os valores de uma determinada chave,
+por exemplo de todos os dados de todos os usuariso gostariamos de retornar somente o email.
 
-$contato = SiteContato::all();
+$contatos = SiteContato::all();
 
-$contato->toArray(); retorna os elementos no formado array associativo.
-$contato->toJson(); retorna os elementos no formado JSON.
+$contatos->pluck('email'); retornara um coleção somente com os emails
+$contatos->pluck('email')->first();
+$contatos->pluck('email')->last();
+$contatos->pluck('email')->reverse();
+$contatos->pluck('email')->toArray();
+$contatos->pluck('email')->toJson();
 
+podemos também com o segundo parametro inserir outra chave como indice, por exemplo,
+podemos colocar o nome como idice o email como chave.
+
+"Jorge" => "jorge@contato.com.br"
+
+$contatos->pluck('email', 'nome');
 
 */
 
