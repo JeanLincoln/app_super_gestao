@@ -6,11 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 /*
 
-o método update() atualiza varios registros no banco de dados atráves de um array associativo e uma query.
+o método delete() deleta o registro do banco de dados de acordo com o id informado.
 
-Fornecedor::whereIn('coluna',['range_de_condições'])->['coluna','valor'];
+$fornecedor = Fornecedor::find(1);
 
-Fornecedor::whereIn('id',[1,2])->update(['nome' =>'fornecedor teste', 'site' => 'teste.com.br']);
+$fornecedor->delete();
+
+ou
+
+Fornecedor::find(1)->delete();
+
+ou com o método destroy() no qual recebe um id ou vários ID's separados por vírgula.
+Também é possivel encaminhar um array ou uma collection de elementos inteiros que representem os ID's desejados.
+
+Fornecedor::destroy(1)
+
 
 */
 class Fornecedor extends Model
