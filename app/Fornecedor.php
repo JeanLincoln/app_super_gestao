@@ -7,32 +7,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /*
 
-O método softDelete() deleta e não deleta o registro do banco de dados, o que acontece é que
-É inserido uma nova coluna no banco de dados chamada deleted_at e apartir disto, se o registro
-tiver algum valor nesta coluna, o ORM considera este como um registro deletado.
-Isto é muito útil para quando precisamos deletar um registro mas ainda precisamos deixar o seu historico.
+O método estático ::withTrashed() retorna todos os registros incluindo os excluidos.
 
-Para isto precisamos criar um trait com o softDeletes no model conforme feito abaixo.
+$fornecedor = Fornecedor::withTrashed();
 
-Logo após devemos criar uma nova migration criando a nova coluna na tabela com o softDeletes
-Favor verificar o arquivo de migration nesse commit
+$fornecedor->get();
 
-$fornecedor = Fornecedor::find(1);
+O método estático ::onlyTrashed() retorna somente os registros excluidos.
 
-$fornecedor->delete();
+$fornecedor = Fornecedor::onlyTrashed();
 
-verifique que depois do comando acima o registro não será deletado do banco de dados, mas somente adicionado um novo valor
-na tabela deleted_at.
+$fornecedor->get();
 
-Agora quando utilizarmos metodos estaticos para recuperar os registros este registro não irá aparecer.
+O método de collection ->restore() restaura um registro que está excluido.
 
-para deleter o registro de fato, deveremos utilizar um outro método
+$fornecedor = Fornecedor::onlyTrashed()->get();
 
-$fornecedor = Fornecedor::find(2);
+$fornecedor[indexDoObjetoASerRestaurado]->restore();
+$fornecedor[0]->restore();
 
-$fornecedor->forceDelete();
-
-Agora o registro de fato foi retirado.
 
 */
 class Fornecedor extends Model
