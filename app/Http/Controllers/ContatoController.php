@@ -25,7 +25,7 @@ class ContatoController extends Controller
             'motivo_contatos_id' => 'required',
             'mensagem' => 'required',
         ]);
-        // dd($request->all());
+
         SiteContato::create($request->all());
         return redirect()->route('site.index');
     }
