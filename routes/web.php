@@ -22,7 +22,7 @@ Route::get('/login', function () {
     return 'login';
 })->name('site.login');
 
-Route::middleware('autenticacao')->prefix('/app')->group(function () {
+Route::middleware('autenticacao:ldap,visitante')->prefix('/app')->group(function () {
     Route::get('/clientes', function () {
         return 'clientes';
     })->name('app.clientes');
