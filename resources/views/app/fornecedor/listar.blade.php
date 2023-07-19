@@ -12,6 +12,7 @@
             </ul>
         </div>
         <div class="informacao-pagina">
+            {{ $msg ?? '' }}
             <div style="width: 30%; margin-left:auto; margin-right:auto;">
                 <form action="POST">
                     @foreach ($fornecedores as $fornecedor)
@@ -32,7 +33,7 @@
                                     <td>{{ $fornecedor->site }}</td>
                                     <td>{{ $fornecedor->uf }}</td>
                                     <td>{{ $fornecedor->email }}</td>
-                                    <td>Excluir</td>
+                                    <td><a href="{{ route('app.fornecedor.excluir', $fornecedor->id) }}">Excluir</a></td>
                                     <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
                                 </tr>
                             </tbody>
