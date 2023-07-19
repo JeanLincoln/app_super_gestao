@@ -6,10 +6,10 @@
             <p>Listagem de produtos</p>
         </div>
         <div class="menu">
-            {{-- <ul>
-                <li><a href="{{ route('app.produto.adicionar') }}">Novo</a></li>
-                <li><a href="{{ route('app.produto') }}">Consulta</a></li>
-            </ul> --}}
+            <ul>
+                <li><a href="{{ route('produto.create') }}">Novo produto</a></li>
+                {{-- <li><a href="{{ route('app.produto') }}">Consulta</a></li> --}}
+            </ul>
         </div>
         <div class="informacao-pagina">
             {{ $msg ?? '' }}
