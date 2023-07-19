@@ -38,6 +38,7 @@
                             </tbody>
                         </table>
                     @endforeach
+                    {{ $fornecedores->appends($request)->links() }}
                 </form>
             </div>
         </div>
