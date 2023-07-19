@@ -15,7 +15,6 @@ class LoginController extends Controller
         $erro == 1 && $erro = 'Usuario e/ou senha nao existe';
         $erro == 2 && $erro = 'Necessario realizar login para ter acesso a tela!';
 
-
         return view('site.login', ['titulo' => 'Login', 'erro' => $erro]);
     }
 
@@ -52,8 +51,13 @@ class LoginController extends Controller
             $_SESSION['nome'] = $usuario->name;
             $_SESSION['email'] = $usuario->email;
 
-            return redirect()->route('app.clientes');
+            return redirect()->route('app.home');
         }
         return redirect()->route('site.login', ['erro' => 1]);
+    }
+
+    public function sair()
+    {
+        echo 'Sair';
     }
 }
