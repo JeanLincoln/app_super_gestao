@@ -13,7 +13,7 @@
         </div>
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left:auto; margin-right:auto;">
-                <form method="POST" action="{{ route('app.fornecedor.adicionar') }}">
+                <form method="POST" action="{{ route('produto.store') }}">
                     @csrf
                     <input type="text" name="nome" placeholder="Nome" value="{{ $produto->nome ?? old('nome') }}"
                         class="borda-preta">
