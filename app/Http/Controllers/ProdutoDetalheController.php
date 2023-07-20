@@ -77,24 +77,46 @@ class ProdutoDetalheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\ProdutoDetalhe $produto_detalhe
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ProdutoDetalhe $produto_detalhe)
     {
-        //
+        $unidades = Unidade::all();
+
+        return view('app.produto_detalhe.edit', ['produto_detalhe' => $produto_detalhe, 'unidades' => $unidades]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\ProdutoDetalhe $produto_detalhe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProdutoDetalhe $produto_detalhe)
     {
-        //
+        $regras = [
+            'produto_id' => 'required|numeric',
+            'comprimento' => 'required|numeric',
+            'largura' => 'required|numeric',
+            'altura' => 'required|numeric',
+            'unidade_id' => 'exists:unidades,id|numeric',
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'numeric' => 'O campo :attribute deve ser númerico',
+            'unidade_id.exists' => 'A unidade escolhida não existe!',
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $produto_detalhe->update($request->all());
+
+        echo 'Produto-Detalhe atualizado com sucesso!';
+
+        // return redirect()->route('app.produto_detalhe.show', ['produto' => $produto_detalhe->id]);
     }
 
     /**
