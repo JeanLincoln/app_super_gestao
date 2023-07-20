@@ -12,8 +12,9 @@
         </div>
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left:auto; margin-right:auto;">
-                <form method="POST" action="{{ route('produto.store') }}">
+                <form method="POST" action="{{ route('produto.update', ['produto' => $produto->id]) }}">
                     @csrf
+                    @method('PUT')
                     <input type="text" name="nome" placeholder="Nome" value="{{ $produto->nome ?? old('nome') }}"
                         class="borda-preta">
                     {{ $errors->has('nome') ? $errors->first('nome') : '' }}
@@ -32,7 +33,7 @@
                         @endforeach
                     </select>
                     {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}
-                    <button type="submit" class="borda-preta">Cadastrar</button>
+                    <button type="submit" class="borda-preta">Atualizar</button>
                 </form>
             </div>
         </div>
