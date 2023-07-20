@@ -40,6 +40,7 @@ Route::middleware('autenticacao:ldap,visitante')->prefix('/app')->group(function
     Route::get('/fornecedor/excluir{id}/{msg?}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
 
     Route::resource('produto', 'ProdutoController');
+    Route::resource('produto-detalhe', 'ProdutoDetalheController');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
