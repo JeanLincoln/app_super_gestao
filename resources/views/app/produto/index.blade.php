@@ -8,7 +8,7 @@
         <div class="menu">
             <ul>
                 <li><a href="{{ route('produto.create') }}">Novo produto</a></li>
-                {{-- <li><a href="{{ route('app.produto') }}">Consulta</a></li> --}}
+                {{-- <li><a href="{{ route('produto.show') }}">Consulta</a></li> --}}
             </ul>
         </div>
         <div class="informacao-pagina">
@@ -22,8 +22,8 @@
                                 <th>Descrição</th>
                                 <th>Peso</th>
                                 <th>Unidade ID</th>
-                                <th></th>
-                                <th></th>
+                                <th>Visualizar</th>
+                                {{-- <th></th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -33,6 +33,9 @@
                                     <td>{{ $produto->descricao }}</td>
                                     <td>{{ $produto->peso }}</td>
                                     <td>{{ $produto->unidade_id }}</td>
+                                    <td>
+                                        <a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a>
+                                    </td>
                                     {{-- <td><a href="{{ route('app.produto.excluir', $produto->id) }}">Excluir</a></td>
                                     <td><a href="{{ route('app.produto.editar', $produto->id) }}">Editar</a></td> --}}
                                 </tr>
