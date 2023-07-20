@@ -23,6 +23,7 @@
                                 <th>Peso</th>
                                 <th>Unidade ID</th>
                                 <th>Visualizar</th>
+                                <th>Excluir</th>
                                 <th>Editar</th>
                             </tr>
                         </thead>
@@ -36,7 +37,14 @@
                                     <td>
                                         <a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a>
                                     </td>
-                                    {{-- <td><a href="{{ route('app.produto.excluir', $produto->id) }}">Excluir</a></td> --}}
+                                    <td>
+                                        <form action="{{ route('produto.destroy', ['produto' => $produto->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Excluir</button>
+                                        </form>
+                                    </td>
                                     <td>
                                         <a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a>
                                     </td>

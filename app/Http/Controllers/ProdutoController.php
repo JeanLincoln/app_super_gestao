@@ -14,12 +14,12 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $msg = '')
     {
-        // $msg = $request->input('msg') ? $request->input('msg') : '';
+        $msg = $request->input('msg') ? $request->input('msg') : '';
         $produtos = Produto::paginate(10);
 
-        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
+        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all(), 'msg' => $msg]);
     }
 
     /**
@@ -131,6 +131,10 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+
+        $msg = 'O produto foi excluido com sucesso!';
+
+        return redirect()->route('produto.index', ['msg' => $msg]);
     }
 }
