@@ -20,27 +20,7 @@ class ProdutoController extends Controller
     {
         $msg = $request->input('msg') ? $request->input('msg') : '';
 
-        /*
-            Por padrão o laravel trabalha com o modo de carregamento de dados lazy loading,
-            isto significa que  os dados de relacionamento dos modelos serão carregados somente
-            quando o metodo de relacionamento for chamado:
-
-
-            $produto->nome
-
-            -- Produto ainda não possui os dados de relacionamento itemDetalhe --
-
-            $produto->itemDetalhe->comprimento
-
-            --Agora o Produto ainda possui os dados de relacionamento itemDetalhe --
-
-            O eager loading, oposto do lazy, carrega os dados de relacionamento diretamente
-            no controller, fazendo assim que a pagina seja carregada com os dados prontos.
-
-            Podemos utilizar o eager loading conforme abaixo
-        */
-
-        $produtos = Item::with(['itemDetalhe'])->paginate(10);
+        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(10);
 
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all(), 'msg' => $msg]);
     }
