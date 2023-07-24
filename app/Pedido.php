@@ -11,7 +11,8 @@ class Pedido extends Model
     public function produtos()
     {
         // return $this->belongsToMany('App\Produto', 'pedidos_produtos');
-        return $this->belongsToMany('App\Item', 'pedidos_produtos', 'pedido_id', 'produto_id');
+        return $this->belongsToMany('App\Item', 'pedidos_produtos', 'pedido_id', 'produto_id')
+            ->withPivot('created_at', 'updated_at');
 
         /*  PARÂMETROS
             1 - Modelo do relacionamento NxN em relação o modelo que estamos implementando.
