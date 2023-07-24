@@ -41,6 +41,10 @@ Route::middleware('autenticacao:ldap,visitante')->prefix('/app')->group(function
 
     Route::resource('produto', 'ProdutoController');
     Route::resource('produto-detalhe', 'ProdutoDetalheController');
+
+    Route::resource('cliente', 'ClienteController');
+    Route::resource('pedido', 'PedidoController');
+    Route::resource('pedido-Produto', 'PedidoProdutoController');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
