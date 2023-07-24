@@ -26,12 +26,12 @@
                         <tbody>
                             @foreach ($clientes as $cliente)
                                 <tr>
-                                    <td>{{ $produto->nome }}</td>
+                                    <td>{{ $cliente->nome }}</td>
                                     <td>
                                         <a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">Visualizar</a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a>
+                                        <a href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">Editar</a>
                                     </td>
                                     <td>
                                         <form action="{{ route('cliente.destroy', ['cliente' => $cliente->id]) }}"
