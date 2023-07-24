@@ -40,13 +40,48 @@ class PedidoProdutoController extends Controller
      */
     public function store(Request $request, Pedido $pedido)
     {
-        $regras = ['produto_id' => 'exists:produtos,id'];
-        $feedback = ['produto_id.exists' => 'O produto informado não existe!'];
+        $regras = [
+            'produto_id' => 'exists:produtos,id',
+            'quantidade' => 'numeric|required'
+        ];
+        $feedback = [
+            'produto_id.exists' => 'O produto informado não existe!',
+            'required' => 'O campo :attribute é obrigatório!',
+            'numeric' => 'O campo :attribute deve ser numérico!'
+        ];
 
         $request->validate($regras, $feedback);
-        $produto_id = $request->input('produto_id');
 
-        PedidoProduto::create(['produto_id' => $produto_id, 'pedido_id' => $pedido->id]);
+        /*$pedidoProduto = new PedidoProduto();
+        $pedidoProduto->pedido_id = $pedido->id;
+        $pedidoProduto->produto_id = $request->input('produto_id');
+        $pedidoProduto->quantidade = $request->input('quantidade');
+
+        $pedidoProduto->save();*/
+
+        // $pedido->produtos  Os registros do relacionamentos
+        // $pedido->produtos(); Retorna um objeto
+
+        /* Utilizando o metodo attach:
+
+        $pedido->produtos()->attach(
+            $request->input('produto_id',),
+            ['quantidade' => $request->input('quantidade')]
+        ); */
+
+        /* Parametros
+            1-> id da foreign key, uma vez que o ja temos o id do model que esta sendo manipulado.
+            2-> um array com chaves e valores onde informaremos as colunas da tabela onde guarda o relacionamento
+        */
+
+        // para inserir varios registros:
+
+        $pedido->produtos()->attach([
+            $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
+            // $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
+            // $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
+            // $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
+        ]);
 
         return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
