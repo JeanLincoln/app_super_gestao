@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Produto;
 use App\Unidade;
 use App\Item;
+use App\Fornecedor;
 use App\ProdutoDetalhe;
 
 use Illuminate\Http\Request;
@@ -33,9 +34,10 @@ class ProdutoController extends Controller
     public function create()
     {
         $unidades = Unidade::all();
+        $fornecedores = Fornecedor::all();
 
 
-        return view('app.produto.create', ['unidades' => $unidades]);
+        return view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -48,6 +50,7 @@ class ProdutoController extends Controller
     {
         $regras = [
             'nome' => 'required|min:3|max:40',
+            'fornecedor_id' => 'exists:fornecedores,id',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id',
@@ -61,11 +64,12 @@ class ProdutoController extends Controller
             'descricao.min' => 'O campo :attribute deve ter no minimo 3 caracteres',
             'integer' => 'O campo :attribute deve ser um número inteiro',
             'unidade_id.exists' => 'A unidade escolhida não existe!',
+            'fornecedor_id.exists' => 'O fornecedor escolhido não existe!',
         ];
 
         $request->validate($regras, $feedback);
 
-        Produto::create($request->all());
+        Item::create($request->all());
 
         return redirect()->route('produto.index');
     }
@@ -84,26 +88,29 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  \App\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $produto)
+    public function edit(Item $produto)
     {
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
+     * @param  \App\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Item $produto)
     {
         $regras = [
             'nome' => 'required|min:3|max:40',
+            'fornecedor_id' => 'exists:fornecedores,id',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id',
@@ -117,6 +124,7 @@ class ProdutoController extends Controller
             'descricao.min' => 'O campo :attribute deve ter no minimo 3 caracteres',
             'integer' => 'O campo :attribute deve ser um número inteiro',
             'unidade_id.exists' => 'A unidade escolhida não existe!',
+            'fornecedor_id.exists' => 'O fornecedor escolhido não existe!',
         ];
 
         $request->validate($regras, $feedback);
