@@ -52,35 +52,8 @@ class PedidoProdutoController extends Controller
 
         $request->validate($regras, $feedback);
 
-        /*$pedidoProduto = new PedidoProduto();
-        $pedidoProduto->pedido_id = $pedido->id;
-        $pedidoProduto->produto_id = $request->input('produto_id');
-        $pedidoProduto->quantidade = $request->input('quantidade');
-
-        $pedidoProduto->save();*/
-
-        // $pedido->produtos  Os registros do relacionamentos
-        // $pedido->produtos(); Retorna um objeto
-
-        /* Utilizando o metodo attach:
-
-        $pedido->produtos()->attach(
-            $request->input('produto_id',),
-            ['quantidade' => $request->input('quantidade')]
-        ); */
-
-        /* Parametros
-            1-> id da foreign key, uma vez que o ja temos o id do model que esta sendo manipulado.
-            2-> um array com chaves e valores onde informaremos as colunas da tabela onde guarda o relacionamento
-        */
-
-        // para inserir varios registros:
-
         $pedido->produtos()->attach([
             $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
-            // $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
-            // $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
-            // $request->input('produto_id',) => ['quantidade' => $request->input('quantidade')]
         ]);
 
         return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
@@ -126,8 +99,19 @@ class PedidoProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pedido $pedido, Produto $produto)
     {
-        //
+        //convencional
+
+        /* PedidoProduto::where([
+            'pedido_id' => $pedido->id,
+            'produto_id' => $produto->id
+        ])->delete();*/
+
+        //pelo relacionamento
+
+        $pedido->produtos()->detach($produto->id);
+
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
 }

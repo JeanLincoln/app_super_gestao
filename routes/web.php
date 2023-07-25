@@ -47,6 +47,7 @@ Route::middleware('autenticacao:ldap,visitante')->prefix('/app')->group(function
     // Route::resource('pedido-Produto', 'PedidoProdutoController');
     Route::get('pedido-produto/create/{pedido}', 'PedidoProdutoController@create')->name('pedido-produto.create');
     Route::post('pedido-produto/store/{pedido}', 'PedidoProdutoController@store')->name('pedido-produto.store');
+    Route::delete('pedido-produto/destroy/{pedido}/{produto}', 'PedidoProdutoController@destroy')->name('pedido-produto.destroy');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
